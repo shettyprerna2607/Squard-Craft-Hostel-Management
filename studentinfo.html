@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="studentinfostyle.css">
+    <title>Student Information</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Student Information System</h1>
+
+    <form>
+        <label for="referenceNumber">Usn:</label>
+        <input type="text" id="referenceNumber" name="referenceNumber" required> <br>
+       <div align='center'> <button type="button" onclick="retrieveStudentInfo()">Get Information</button> </div>
+    </form>
+    <div id ="studentInfoContainer">
+    <div id="studentInfo">
+        <!-- Student information will be displayed here -->
+    </div>
+    </div>
+    </div>
+
+    <script>
+        // Sample student data (replace this with your actual data)
+        var studentData = {
+            120: { Name: 'Mark Lobo', Age: 19,Branch:"AIML",Sec : "E",Phone_no:"1234556",EmailID:"marklobo@gmail.com" },
+            123: { Name: 'Prerana', Age: 19,Branch:"CSE",Sec : "B",Phone_no:"124421",EmailID:"prernashetty@gmail.com"  }
+            
+            // Add more students as needed
+        };
+
+        function retrieveStudentInfo() {
+            // Get the reference number from the input field
+            var referenceNumber = document.getElementById("referenceNumber").value;
+
+            // Check if the reference number exists in the student data
+            if (studentData.hasOwnProperty(referenceNumber)) {
+                // Retrieve student information 
+                var studentInfo ="Name: " + studentData[referenceNumber].Name +"<br>" +
+                                 "Age: " + studentData[referenceNumber].Age +"<br>" +
+                                 "Branch: " + studentData[referenceNumber].Branch +"<br>" +
+                                 "Sec: " + studentData[referenceNumber].Sec +"<br>" +
+                                 "Phone_no: " + studentData[referenceNumber].Phone_no +"<br>" +
+                                 "EmailID: " + studentData[referenceNumber].EmailID ;
+
+                // Display the information in the studentInfo div
+                document.getElementById("studentInfo").innerHTML = studentInfo;
+            } else {
+                // Display a message if the reference number is not found
+                document.getElementById("studentInfo").innerHTML = "Student not found";
+            }
+        }
+    </script>
+
+</body>
+</html>
